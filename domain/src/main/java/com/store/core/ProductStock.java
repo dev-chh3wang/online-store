@@ -16,4 +16,8 @@ public class ProductStock {
     public int getStock() {
         return stock;
     }
+
+    public void restock(int stock) {
+        this.stock +=stock;
+    }
 }

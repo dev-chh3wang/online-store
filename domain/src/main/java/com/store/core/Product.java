@@ -4,15 +4,15 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Product {
-
     private String code;
     private String name;
     private BigDecimal price;
-
+    private int stock;
     public Product(String code, String name, BigDecimal price) {
         this.code = code;
         this.name = name;
         this.price = price;
+        this.stock = 0;
     }
 
     public static Product of(String code, String name, BigDecimal price) {
@@ -31,6 +31,18 @@ public class Product {
         return price;
     }
 
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public void restock(int stock){
+        this.stock += stock;
+    }
+
+    public boolean inStock(){
+        return this.stock > 0 ? true : false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,5 +56,19 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(code, name, price);
+    }
+
+    public int getStock() {
+        return this.stock;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", stock=" + stock +
+                '}';
     }
 }

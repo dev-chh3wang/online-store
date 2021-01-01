@@ -9,8 +9,8 @@ public class PlaceOrder {
 
 
 
-    public void process(List<OrderLine> orderLIneItems) {
-        Order order = new Order(orderLIneItems);
+    public void process(List<OrderLine> orderLines) {
+        Order order = new Order(null,orderLines);
         System.out.println(order.getOrderNo()+" Order created");
         System.out.println("Total Amount" +order.getTotalCost());
     }

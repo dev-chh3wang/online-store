@@ -2,7 +2,6 @@ package com.store.core;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -11,33 +10,18 @@ import java.util.function.BinaryOperator;
 
 public class Order {
 
-    private String orderNo;
-    private List<OrderLine> orderedItems;
-    private BigDecimal totalCost;
-    private LocalDateTime timestamp;
-    private Customer customer;
-    public Order() {
-        this(new ArrayList<>());
-    }
+    private final String orderNo;
+    private final List<OrderLine> orderedItems;
+    private final LocalDateTime timestamp;
+    private final Customer customer;
 
-    public Order(List<OrderLine> orderedItems) {
+    private final BinaryOperator<BigDecimal> sumCost = BigDecimal::add;
+    public Order(Customer customer,List<OrderLine> orderedItems){
         this.orderedItems = orderedItems;
-        totalCost = BigDecimal.ZERO;
         timestamp = LocalDateTime.now();
         orderNo = UUID.randomUUID().toString();
-    }
-
-    public Order(Customer customer,List<OrderLine> orderedItems){
-        this(orderedItems);
         this.customer = customer;
 
-    }
-
-
-    private void updateTotal() {
-        BinaryOperator<BigDecimal> reducedSum = (subtotal, element) -> subtotal.add(element);
-        totalCost = orderedItems.stream()
-                .map(d -> d.price()).reduce(new BigDecimal(0), reducedSum);
     }
 
 
@@ -46,8 +30,8 @@ public class Order {
     }
 
     public BigDecimal getTotalCost() {
-        updateTotal();
-        return totalCost;
+        return orderedItems.stream()
+                .map(OrderLine::price).reduce(new BigDecimal(0), sumCost);
     }
 
     public int noOfItems() {

@@ -9,7 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>mt.everest.np</groupId>
-    <artifactId>infrastructure</artifactId>
+    <artifactId>cli-app-config</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>mt.everest.np</groupId>
+            <artifactId>in-memory-persistence</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

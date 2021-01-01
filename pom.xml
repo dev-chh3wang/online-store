@@ -11,7 +11,8 @@
         <module>use-case</module>
         <module>domain</module>
         <module>console-app</module>
-        <module>infrastructure</module>
+        <module>configuration/cli-app-config</module>
+        <module>adapters/in-memory-persistence</module>
     </modules>
     <packaging>pom</packaging>
 
