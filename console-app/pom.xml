@@ -14,9 +14,18 @@
 
     <dependencies>
         <dependency>
-            <groupId>mt.everest.np</groupId>
+            <groupId>mt.everest.np.config</groupId>
             <artifactId>cli-app-config</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
